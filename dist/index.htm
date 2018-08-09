@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		body {font-family:sans-serif;font-size:12pt;box-sizing:border-box;margin:1em;}
+		section {padding:1em;margin:1em 0;border:solid 1px #eee;box-shadow:#ddd 0 0 10px;}
+	</style>
+	<link rel="stylesheet" href="../src/jquery.dialog.date.css">
+</head>
+
+<body>
+	<h1>jquery DateRangePicker sample</h1>
+
+	<section>
+		<h2>inline</h2>
+		<div id="cal1"></div>
+		<div id="cal2"></div>
+	</section>
+	<section>
+		<h2>input</h2>
+		<div>
+			<h3>default option</h3>
+			<input type="text" id="input1" size="40">
+		</div>
+		<div>
+			<h3>{ range: false }</h3>
+			<input type="text" id="input2" size="40">
+		</div>
+		<div>
+			<h3>option preset "auto"</h3>
+			<input type="text" id="input3" size="40">
+		</div>
+	</section>
+	<section>
+		<h3>modal dialog</h3>
+		<div>
+			<button type="button" id="button1">select date range</button>
+		</div>
+	</section>
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js'></script>
+	<script src='jquery.dialog.date.min.js'></script>
+	<script src='jquery.dialog.date.ko-KR.min.js'></script>
+	<script>
+		new DateRangeDialog().render('#cal1');
+		$('#input1').calendarPicker();
+		$('#input2').calendarPicker({ range: false });
+		$('#input3').calendarPicker('preset', 'auto');
+		$('#button1').on('click', function () {
+			$.calendarPicker({
+				validate: {
+					allow: 'today+3d~today+2m!0d'
+				}
+			}).then(function (start, end) {
+				alert(this.formatValue(start, end, '부터 ', '까지', 'y년 m월 d일 ww'));
+			});
+		});
+	</script>
+</body>
+
+</html>

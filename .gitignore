@@ -1,0 +1,4 @@
+.vscode/
+node_modules/
+jsconfig.json
+Thumbs.db
